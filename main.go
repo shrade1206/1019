@@ -110,7 +110,10 @@ func wsEndpoint(c *gin.Context) {
 		}
 		if string(p) == "save" {
 			//用來生成新文件使用(檔名、來源、)
-			os.WriteFile("demo.jpg", newImg, os.ModePerm)
+			err := os.WriteFile("demo.jpg", newImg, os.ModePerm)
+			if err != nil {
+				log.Println(err)
+			}
 		}
 		log.Println("使用者訊息: " + string(p))
 	}
